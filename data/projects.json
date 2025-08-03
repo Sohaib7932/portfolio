@@ -1,0 +1,38 @@
+[
+  {
+    "image": "/api/placeholder/400/300",
+    "title": "Portfolio Website",
+    "description": "An elegant personal portfolio showcasing projects and skills using Next.js.",
+    "category": "Web Design",
+    "bgImage": "/Work-1.png",
+    "link": "https://example.com/portfolio",
+    "technologies": ["Next.js", "Tailwind CSS", "React"]
+  },
+  {
+    "image": "/api/placeholder/400/300",
+    "title": "E-commerce Platform",
+    "description": "A powerful e-commerce platform with cutting-edge features and modern UI.",
+    "category": "Web Development",
+    "bgImage": "/Work-2.png",
+    "link": "https://example.com/ecommerce",
+    "technologies": ["React", "Node.js", "MongoDB"]
+  },
+  {
+    "image": "/api/placeholder/400/300",
+    "title": "Mobile Banking App",
+    "description": "A secure and user-friendly mobile banking application with real-time transactions.",
+    "category": "Mobile App",
+    "bgImage": "/Work-3.png",
+    "link": "https://example.com/banking-app",
+    "technologies": ["React Native", "Firebase", "Stripe"]
+  },
+  {
+    "image": "/api/placeholder/400/300",
+    "title": "UI/UX Design System",
+    "description": "A comprehensive design system with components and guidelines for user experience.",
+    "category": "UI/UX Design",
+    "bgImage": "/Work-4.png",
+    "link": "https://example.com/design-system",
+    "technologies": ["Figma", "Storybook", "CSS"]
+  }
+]

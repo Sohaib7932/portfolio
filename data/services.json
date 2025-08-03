@@ -1,0 +1,26 @@
+[
+  {
+    "icon": "web_icon",
+    "title": "Web Development",
+    "description": "Creating modern, responsive websites using the latest technologies like React, Next.js, and Tailwind CSS.",
+    "features": ["Responsive Design", "Fast Loading", "SEO Optimized"]
+  },
+  {
+    "icon": "mobile_icon",
+    "title": "Frontend Development", 
+    "description": "Building interactive user interfaces with smooth animations and excellent user experience.",
+    "features": ["React/Next.js", "Modern UI/UX", "Cross-browser Compatible"]
+  },
+  {
+    "icon": "ui_icon",
+    "title": "UI/UX Design",
+    "description": "Designing beautiful and functional user interfaces that provide exceptional user experiences.",
+    "features": ["User-Centered Design", "Prototyping", "Modern Aesthetics"]
+  },
+  {
+    "icon": "graphics_icon",
+    "title": "Website Optimization",
+    "description": "Optimizing websites for better performance, speed, and search engine rankings.",
+    "features": ["Performance Tuning", "SEO Enhancement", "Code Optimization"]
+  }
+]
