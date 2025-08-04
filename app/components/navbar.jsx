@@ -1,10 +1,46 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import Image from "next/image";
 import { assets } from "@/assets/assets";
+import { gsap } from "gsap";
 
 const navbar = () => {
   const sideMenuRef = useRef();
+  const navRef = useRef();
+  const logoRef = useRef();
+  const menuRef = useRef();
+  const ctaRef = useRef();
+
+  useEffect(() => {
+    // Navbar entrance animation
+    const tl = gsap.timeline();
+    
+    tl.from(navRef.current, {
+      y: -100,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out"
+    })
+    .from(logoRef.current, {
+      x: -50,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power2.out"
+    }, "-=0.5")
+    .from(menuRef.current?.children || [], {
+      y: -20,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: "power2.out"
+    }, "-=0.3")
+    .from(ctaRef.current, {
+      x: 50,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power2.out"
+    }, "-=0.4");
+  }, []);
 
   const openMenu = () => {
     sideMenuRef.current.style.transform = "translateX(-16rem)";

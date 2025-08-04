@@ -1,18 +1,21 @@
 import React from 'react'
 import Image from 'next/image'
 import { assets } from '@/assets/assets'
+import { FadeInUp, FadeInLeft, FadeInRight, StaggerContainer, StaggerItem } from './animations/MotionComponents'
 
 const Contact = () => {
   return (
     <div id='contact' className='w-full px-[12%] py-20 scroll-mt-20 bg-gradient-to-b from-white to-gray-50'>
-      <h2 className='text-center text-5xl font-Ovo mb-4'>Get In Touch</h2>
-      <p className='text-center max-w-2xl mx-auto font-Ovo text-gray-600 mb-16'>
-        Ready to start your next project? I'd love to hear from you. Let's discuss how we can bring your ideas to life.
-      </p>
+      <FadeInUp>
+        <h2 className='text-center text-5xl font-Ovo mb-4'>Get In Touch</h2>
+        <p className='text-center max-w-2xl mx-auto font-Ovo text-gray-600 mb-16'>
+          Ready to start your next project? I'd love to hear from you. Let's discuss how we can bring your ideas to life.
+        </p>
+      </FadeInUp>
 
       <div className='flex flex-col lg:flex-row gap-16 max-w-6xl mx-auto'>
         {/* Contact Information */}
-        <div className='flex-1'>
+        <FadeInLeft className='flex-1'>
           <h3 className='text-2xl font-Ovo font-semibold text-gray-800 mb-8'>Let's Talk</h3>
           <p className='text-gray-600 mb-8 leading-relaxed'>
             I'm currently available for freelance work and exciting new opportunities. 
@@ -20,8 +23,8 @@ const Contact = () => {
             feel free to reach out.
           </p>
 
-          <div className='space-y-6'>
-            <div className='flex items-center gap-4 group cursor-pointer'>
+          <StaggerContainer className='space-y-6'>
+            <StaggerItem className='flex items-center gap-4 group cursor-pointer'>
               <div className='w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center group-hover:bg-blue-200 transition-colors duration-300'>
                 {assets.mail_icon ? (
                   <Image src={assets.mail_icon} alt='Email' className='w-6 h-6'/>
@@ -36,9 +39,9 @@ const Contact = () => {
                 <p className='text-gray-800 font-medium'>Email</p>
                 <p className='text-gray-600'>muhammadsohaib7932@gmail.com</p>
               </div>
-            </div>
+            </StaggerItem>
 
-            <div className='flex items-center gap-4 group cursor-pointer'>
+            <StaggerItem className='flex items-center gap-4 group cursor-pointer'>
               <div className='w-12 h-12 bg-green-100 rounded-full flex items-center justify-center group-hover:bg-green-200 transition-colors duration-300'>
                 {assets.call_icon ? (
                   <Image src={assets.call_icon} alt='Phone' className='w-6 h-6'/>
@@ -52,9 +55,9 @@ const Contact = () => {
                 <p className='text-gray-800 font-medium'>Phone</p>
                 <p className='text-gray-600'>+92 3365190729</p>
               </div>
-            </div>
+            </StaggerItem>
 
-            <div className='flex items-center gap-4 group cursor-pointer'>
+            <StaggerItem className='flex items-center gap-4 group cursor-pointer'>
               <div className='w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center group-hover:bg-purple-200 transition-colors duration-300'>
                 {assets.location_icon ? (
                   <Image src={assets.location_icon} alt='Location' className='w-6 h-6'/>
@@ -68,12 +71,12 @@ const Contact = () => {
                 <p className='text-gray-800 font-medium'>Location</p>
                 <p className='text-gray-600'>Islamabad, Pakistan</p>
               </div>
-            </div>
-          </div>
-        </div>
+            </StaggerItem>
+          </StaggerContainer>
+        </FadeInLeft>
 
         {/* Contact Form */}
-        <div className='flex-1'>
+        <FadeInRight className='flex-1'>
           <form className='space-y-6'>
             <div className='grid grid-cols-1 sm:grid-cols-2 gap-6'>
               <div>
@@ -119,7 +122,7 @@ const Contact = () => {
               Send Message
             </button>
           </form>
-        </div>
+        </FadeInRight>
       </div>
     </div>
   )

@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { assets } from '@/assets/assets'
 import servicesData from '@/data/services.json'
+import { FadeInUp, StaggerContainer, StaggerItem } from './animations/MotionComponents'
 
 const Services = () => {
   // Map icon names to actual icon imports
@@ -22,15 +23,17 @@ const Services = () => {
 
   return (
     <div id='services' className='w-full px-[12%] py-20 scroll-mt-20'>
-      <h2 className='text-center text-5xl font-Ovo mb-4'>My Services</h2>
-      <p className='text-center max-w-2xl mx-auto font-Ovo text-gray-600 mb-16'>
-        I offer a range of web development services to help bring your digital vision to life. 
-        From custom websites to optimization, I've got you covered.
-      </p>
+      <FadeInUp>
+        <h2 className='text-center text-5xl font-Ovo mb-4'>My Services</h2>
+        <p className='text-center max-w-2xl mx-auto font-Ovo text-gray-600 mb-16'>
+          I offer a range of web development services to help bring your digital vision to life. 
+          From custom websites to optimization, I've got you covered.
+        </p>
+      </FadeInUp>
 
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto'>
+      <StaggerContainer className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto'>
         {servicesList.map((service, index) => (
-          <div 
+          <StaggerItem 
             key={index}
             className='border-[0.5px] border-gray-300 rounded-lg p-5 cursor-pointer hover:bg-gradient-to-br hover:from-blue-50 hover:to-purple-50 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-100/50 hover:border-blue-300 transition-all duration-300 ease-out transform hover:scale-102 group bg-white relative overflow-hidden'
           >
@@ -70,9 +73,9 @@ const Services = () => {
             </ul>
             
             <div className='absolute inset-0 rounded-lg bg-gradient-to-r from-blue-400/0 via-purple-400/0 to-pink-400/0 group-hover:from-blue-400/5 group-hover:via-purple-400/5 group-hover:to-pink-400/5 transition-all duration-300 pointer-events-none'></div>
-          </div>
+          </StaggerItem>
         ))}
-      </div>
+      </StaggerContainer>
     </div>
   )
 }

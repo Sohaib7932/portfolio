@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { assets } from '@/assets/assets'
 import projectsData from '@/data/projects.json'
+import { FadeInUp, StaggerContainer, StaggerItem } from './animations/MotionComponents'
 
 const RecentProjects = () => {
   const projectList = projectsData.map(project => ({
@@ -12,20 +13,22 @@ const RecentProjects = () => {
 
   return (
     <div id='recent-projects' className='w-full px-[12%] py-20 scroll-mt-20' >
-      <h2 className='text-center text-5xl font-Ovo mb-4' >Recent Projects</h2>
-      <p className='text-center max-w-2xl mx-auto font-Ovo text-gray-600 mb-16' >
-        I've worked on a variety of projects ranging from small business websites to complex web applications.
-      </p>
+      <FadeInUp>
+        <h2 className='text-center text-5xl font-Ovo mb-4' >Recent Projects</h2>
+        <p className='text-center max-w-2xl mx-auto font-Ovo text-gray-600 mb-16' >
+          I've worked on a variety of projects ranging from small business websites to complex web applications.
+        </p>
+      </FadeInUp>
 
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto' >
+      <StaggerContainer className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto' >
         {projectList.map((project, index) => (
-          <a 
-            key={index}
-            href={project.link}
-            target='_blank'
-            rel='noopener noreferrer'
-            className='border-[0.5px] border-gray-300 rounded-lg overflow-hidden shadow-lg group cursor-pointer hover:shadow-2xl transform transition-all duration-500 hover:scale-105 hover:-translate-y-3 relative bg-white hover:border-blue-400'
-          >
+          <StaggerItem key={index}>
+            <a 
+              href={project.link}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='block border-[0.5px] border-gray-300 rounded-lg overflow-hidden shadow-lg group cursor-pointer hover:shadow-2xl transform transition-all duration-500 hover:scale-105 hover:-translate-y-3 relative bg-white hover:border-blue-400'
+            >
             {project.image ? (
               <Image
                 src={project.image}
@@ -61,9 +64,10 @@ const RecentProjects = () => {
                 </div>
               )}
             </div>
-          </a>
+            </a>
+          </StaggerItem>
         ))}
-      </div>
+      </StaggerContainer>
     </div>
   )
 }

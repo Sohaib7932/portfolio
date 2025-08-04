@@ -1,4 +1,4 @@
-//'use client'
+'use client'
 import Navbar from "./components/navbar";
 import Header from "./components/Header";
 import About from "./components/About";
