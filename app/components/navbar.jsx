@@ -53,7 +53,8 @@ const navbar = () => {
   return (
     <>
       <nav
-        className="w-full fixed left-0 top-0 pl-0 pr-5 lg:pr-8 xl:pr-[8%] py-1 flex justify-between items-center z-10"
+        ref={navRef}
+        className="w-full fixed left-0 top-0 pl-0 pr-5 lg:pr-8 xl:pr-[8%] py-1 flex justify-between items-center z-10 transition-colors duration-300"
         style={{ margin: 0, left: 0, width: '100vw' }}
       >
         <a href="#top" className="pl-5 lg:pl-8 xl:pl-[8%]">
@@ -63,47 +64,44 @@ const navbar = () => {
             className="w-28 cursor-pointer mr-14"
           />
         </a>
-        <ul className="hidden lg:flex gap-8 rounded-full px-12 py-1 bg-white shadow-md bg-opacity-50">
+        <ul ref={menuRef} className="hidden lg:flex gap-8 rounded-full px-12 py-1 bg-white shadow-md bg-opacity-50">
           <li>
             {" "}
-            <a className="font-Ovo" href="#top">
+            <a className="font-Ovo text-gray-700 hover:text-gray-900 transition-colors" href="#top">
               Home
             </a>{" "}
           </li>
           <li>
             {" "}
-            <a className="font-Ovo" href="#about">
+            <a className="font-Ovo text-gray-700 hover:text-gray-900 transition-colors" href="#about">
               About
             </a>{" "}
           </li>
           <li>
             {" "}
-            <a className="font-Ovo" href="#services">
+            <a className="font-Ovo text-gray-700 hover:text-gray-900 transition-colors" href="#services">
               Services
             </a>{" "}
           </li>
           <li>
             {" "}
-            <a className="font-Ovo" href="#recent-projects">
+            <a className="font-Ovo text-gray-700 hover:text-gray-900 transition-colors" href="#recent-projects">
               Projects
-            </a>
+            </a>{" "}
           </li>
           <li>
             {" "}
-            <a className="font-Ovo" href="#contact">
+            <a className="font-Ovo text-gray-700 hover:text-gray-900 transition-colors" href="#contact">
               Contact
             </a>{" "}
           </li>
         </ul>
 
         <div className="flex items-center gap-6">
-          <button className="hover:cursor-pointer">
-            <Image src={assets.moon_icon} alt="Dark mode toggle" className="w-6" />
-          </button>
-
           <a
+            ref={ctaRef}
             href="#contact"
-            className="hidden lg:flex items-center gap-3 border border-gray-500 rounded-full px-4 py-2 font-Ovo"
+            className="hidden lg:flex items-center gap-3 border border-gray-500 rounded-full px-4 py-2 font-Ovo text-gray-700 hover:bg-gray-50 transition-colors"
           >
             Contact{" "}
             <Image src={assets.arrow_icon} alt="arrow" className="w-3" />
@@ -131,31 +129,31 @@ const navbar = () => {
 
           <li>
             {" "}
-            <a className="font-Ovo" onClick={closeMenu} href="#top">
+            <a className="font-Ovo text-gray-800 hover:text-gray-600 transition-colors" onClick={closeMenu} href="#top">
               Home
             </a>{" "}
           </li>
           <li>
             {" "}
-            <a className="font-Ovo" onClick={closeMenu} href="#about">
+            <a className="font-Ovo text-gray-800 hover:text-gray-600 transition-colors" onClick={closeMenu} href="#about">
               About
             </a>{" "}
           </li>
           <li>
             {" "}
-            <a className="font-Ovo" onClick={closeMenu} href="#services">
+            <a className="font-Ovo text-gray-800 hover:text-gray-600 transition-colors" onClick={closeMenu} href="#services">
               Services
             </a>{" "}
           </li>
           <li>
             {" "}
-            <a className="font-Ovo" onClick={closeMenu} href="#recent-projects">
+            <a className="font-Ovo text-gray-800 hover:text-gray-600 transition-colors" onClick={closeMenu} href="#recent-projects">
               Projects
-            </a>
+            </a>{" "}
           </li>
           <li>
             {" "}
-            <a className="font-Ovo" onClick={closeMenu} href="#contact">
+            <a className="font-Ovo text-gray-800 hover:text-gray-600 transition-colors" onClick={closeMenu} href="#contact">
               Contact
             </a>{" "}
           </li>

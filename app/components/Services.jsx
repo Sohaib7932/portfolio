@@ -5,6 +5,7 @@ import servicesData from '@/data/services.json'
 import { FadeInUp, StaggerContainer, StaggerItem } from './animations/MotionComponents'
 
 const Services = () => {
+  
   // Map icon names to actual icon imports
   const getIcon = (iconName) => {
     const iconMap = {
@@ -24,7 +25,7 @@ const Services = () => {
   return (
     <div id='services' className='w-full px-[12%] py-20 scroll-mt-20'>
       <FadeInUp>
-        <h2 className='text-center text-5xl font-Ovo mb-4'>My Services</h2>
+        <h2 className='text-center text-5xl font-Ovo mb-4 text-gray-900'>My Services</h2>
         <p className='text-center max-w-2xl mx-auto font-Ovo text-gray-600 mb-16'>
           I offer a range of web development services to help bring your digital vision to life. 
           From custom websites to optimization, I've got you covered.

@@ -4,10 +4,11 @@ import { assets } from '@/assets/assets'
 import { FadeInUp, FadeInLeft, FadeInRight, StaggerContainer, StaggerItem } from './animations/MotionComponents'
 
 const Contact = () => {
+  
   return (
     <div id='contact' className='w-full px-[12%] py-20 scroll-mt-20 bg-gradient-to-b from-white to-gray-50'>
       <FadeInUp>
-        <h2 className='text-center text-5xl font-Ovo mb-4'>Get In Touch</h2>
+        <h2 className='text-center text-5xl font-Ovo mb-4 text-gray-900'>Get In Touch</h2>
         <p className='text-center max-w-2xl mx-auto font-Ovo text-gray-600 mb-16'>
           Ready to start your next project? I'd love to hear from you. Let's discuss how we can bring your ideas to life.
         </p>
@@ -83,7 +84,7 @@ const Contact = () => {
                 <label className='block text-gray-700 font-medium mb-2'>Name</label>
                 <input 
                   type='text'
-                  className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 outline-none'
+                  className='w-full px-4 py-3 border border-gray-300 bg-white text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 outline-none'
                   placeholder='Your Name'
                 />
               </div>
@@ -91,7 +92,7 @@ const Contact = () => {
                 <label className='block text-gray-700 font-medium mb-2'>Email</label>
                 <input 
                   type='email'
-                  className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 outline-none'
+                  className='w-full px-4 py-3 border border-gray-300 bg-white text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 outline-none'
                   placeholder='your.email@gmail.com'
                 />
               </div>
@@ -101,7 +102,7 @@ const Contact = () => {
               <label className='block text-gray-700 font-medium mb-2'>Subject</label>
               <input 
                 type='text'
-                className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 outline-none'
+                className='w-full px-4 py-3 border border-gray-300 bg-white text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 outline-none'
                 placeholder='Project Inquiry'
               />
             </div>
@@ -110,7 +111,7 @@ const Contact = () => {
               <label className='block text-gray-700 font-medium mb-2'>Message</label>
               <textarea 
                 rows='6'
-                className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 outline-none resize-none'
+                className='w-full px-4 py-3 border border-gray-300 bg-white text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 outline-none resize-none'
                 placeholder='Tell me about your project...'
               ></textarea>
             </div>

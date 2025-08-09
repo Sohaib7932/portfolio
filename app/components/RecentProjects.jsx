@@ -5,6 +5,7 @@ import projectsData from '@/data/projects.json'
 import { FadeInUp, StaggerContainer, StaggerItem } from './animations/MotionComponents'
 
 const RecentProjects = () => {
+  
   const projectList = projectsData.map(project => ({
     ...project,
     // Fallback to assets if project image is not available
@@ -14,7 +15,7 @@ const RecentProjects = () => {
   return (
     <div id='recent-projects' className='w-full px-[12%] py-20 scroll-mt-20' >
       <FadeInUp>
-        <h2 className='text-center text-5xl font-Ovo mb-4' >Recent Projects</h2>
+        <h2 className='text-center text-5xl font-Ovo mb-4 text-gray-900' >Recent Projects</h2>
         <p className='text-center max-w-2xl mx-auto font-Ovo text-gray-600 mb-16' >
           I've worked on a variety of projects ranging from small business websites to complex web applications.
         </p>

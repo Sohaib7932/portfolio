@@ -4,10 +4,11 @@ import React from 'react'
 import { FadeInUp, StaggerContainer, StaggerItem } from './animations/MotionComponents'
 
 const About = () => {
+  
   return (
-    <div id='about' className='w-full px-[12%] py-10 scroll-mt-20 pt-50'>
+    <div id='about' className='w-full px-[12%] py-10 scroll-mt-20 pt-50 bg-white transition-colors duration-300'>
         <FadeInUp>
-          <h2 className='text-center text-5xl font-Ovo'> About Me</h2>
+          <h2 className='text-center text-5xl font-Ovo text-gray-900'> About Me</h2>
         </FadeInUp>
 
         <StaggerContainer>
@@ -18,7 +19,7 @@ const About = () => {
               </StaggerItem>
 
               <StaggerItem className='flex-1 lg:w-3/5 xl:w-2/3'>
-                  <p className='mb-10 max-w-2xl font-Ovo'> 
+                  <p className='mb-10 max-w-2xl font-Ovo text-gray-700'> 
                   Hello! I'm a Software Engineering student at Air University with a strong 
                   passion for web design and development. Over the past three years, 
                   I've gained extensive experience in building modern, responsive websites 
