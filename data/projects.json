@@ -1,38 +1,34 @@
 [
   {
-    "image": "/api/placeholder/400/300",
-    "title": "Portfolio Website",
-    "description": "An elegant personal portfolio showcasing projects and skills using Next.js.",
-    "category": "Web Design",
-    "bgImage": "/Work-1.png",
-    "link": "https://example.com/portfolio",
-    "technologies": ["Next.js", "Tailwind CSS", "React"]
-  },
-  {
-    "image": "/api/placeholder/400/300",
-    "title": "E-commerce Platform",
-    "description": "A powerful e-commerce platform with cutting-edge features and modern UI.",
+    "image": "/Crystalberylmedia.png",
+    "title": "Design Agency Platform",
+    "description": "Developed a modern and fully responsive WordPress website for a design agency, featuring an engaging layout, smooth navigation, and optimized performance to showcase services effectively.",
     "category": "Web Development",
-    "bgImage": "/Work-2.png",
-    "link": "https://example.com/ecommerce",
-    "technologies": ["React", "Node.js", "MongoDB"]
+    "link": "https://crystalberylmedia.netlify.app/",
+    "technologies": ["Wordpress", "Xampp"]
   },
   {
-    "image": "/api/placeholder/400/300",
-    "title": "Mobile Banking App",
-    "description": "A secure and user-friendly mobile banking application with real-time transactions.",
-    "category": "Mobile App",
-    "bgImage": "/Work-3.png",
-    "link": "https://example.com/banking-app",
-    "technologies": ["React Native", "Firebase", "Stripe"]
+    "image": "/mirhapret.png",
+    "title": "E-commerce Platform",
+    "description": "Worked on the Shopify store 'MirhaPret,' customizing the design, optimizing product listings, and enhancing the overall shopping experience for a seamless and attractive online presence.",
+    "category": "Web Development",
+    "link": "https://mirhapret.com/",
+    "technologies": ["Shopify", "E-commerce"]
   },
   {
-    "image": "/api/placeholder/400/300",
+    "image": "/flexforce.png",
+    "title": "Gym Showcase Website",
+    "description": "Developed 'FlexForce,' a dynamic gym showcase website in Next.js, featuring a modern design, fast performance, and an engaging layout to highlight services, trainers, and fitness programs.",
+    "category": "Web Development",
+    "link": "https://flexforce-eosin.vercel.app/",
+    "technologies": ["Next.js", "Firebase", "Tailwind CSS"]
+  },
+  {
+    "image": "/BPC.png",
     "title": "UI/UX Design System",
-    "description": "A comprehensive design system with components and guidelines for user experience.",
+    "description": "Designed an intuitive and visually appealing UI/UX for a blood donation app, focusing on ease of navigation, donor-recipient connection, and a seamless user experience to encourage quick and efficient blood donations.",
     "category": "UI/UX Design",
-    "bgImage": "/Work-4.png",
-    "link": "https://example.com/design-system",
+    "link": "https://www.figma.com/design/EwgWWL85cK6T0Xs091esDv/Blood-Pulse-Connect?node-id=0-1&t=zKVeI36nAPVxxiF7-1",
     "technologies": ["Figma", "Storybook", "CSS"]
   }
 ]
