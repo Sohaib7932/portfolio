@@ -19,8 +19,8 @@
   },
   {
     "icon": "graphics_icon",
-    "title": "Website Optimization",
-    "description": "Optimizing websites for better performance, speed, and search engine rankings.",
-    "features": ["Performance Tuning", "SEO Enhancement", "Code Optimization"]
+    "title": "App Development",
+    "description": "Develop high-quality, user-friendly, and performance-driven mobile applications tailored to your needs",
+    "features": ["React-native/Flutter", "SEO Enhancement", "Code Optimization"]
   }
 ]
