@@ -18,7 +18,7 @@
   {
     "image": "/flexforce.png",
     "title": "Gym Showcase Website",
-    "description": "Developed 'FlexForce,' a dynamic gym showcase website in Next.js, featuring a modern design, fast performance, and an engaging layout to highlight services, trainers, and fitness programs.",
+    "description": "Developed 'FlexForce,' a dynamic gym showcase website in Next.js and Tailwind CSS, featuring a modern design, fast performance, and an engaging layout to highlight services, trainers, and fitness programs.",
     "category": "Web Development",
     "link": "https://flexforce-eosin.vercel.app/",
     "technologies": ["Next.js", "Firebase", "Tailwind CSS"]
