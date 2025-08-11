@@ -1,6 +1,6 @@
 [
   {
-    "image": "/Crystalberylmedia.png",
+    "image": "/Crystalberylmedia.PNG",
     "title": "Design Agency Platform",
     "description": "Developed a modern and fully responsive WordPress website for a design agency, featuring an engaging layout, smooth navigation, and optimized performance to showcase services effectively.",
     "category": "Web Development",
@@ -8,7 +8,7 @@
     "technologies": ["Wordpress", "Xampp"]
   },
   {
-    "image": "/mirhapret.png",
+    "image": "/Mirhapret.PNG",
     "title": "E-commerce Platform",
     "description": "Worked on the Shopify store 'MirhaPret,' customizing the design, optimizing product listings, and enhancing the overall shopping experience for a seamless and attractive online presence.",
     "category": "Web Development",
@@ -16,7 +16,7 @@
     "technologies": ["Shopify", "E-commerce"]
   },
   {
-    "image": "/flexforce.png",
+    "image": "/FlexForce.PNG",
     "title": "Gym Showcase Website",
     "description": "Developed 'FlexForce,' a dynamic gym showcase website in Next.js and Tailwind CSS, featuring a modern design, fast performance, and an engaging layout to highlight services, trainers, and fitness programs.",
     "category": "Web Development",
@@ -24,7 +24,7 @@
     "technologies": ["Next.js", "Firebase", "Tailwind CSS"]
   },
   {
-    "image": "/BPC.png",
+    "image": "/BPC.PNG",
     "title": "UI/UX Design System",
     "description": "Designed an intuitive and visually appealing UI/UX for a blood donation app, focusing on ease of navigation, donor-recipient connection, and a seamless user experience to encourage quick and efficient blood donations.",
     "category": "UI/UX Design",

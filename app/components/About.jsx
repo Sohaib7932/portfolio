@@ -8,7 +8,7 @@ const About = () => {
   return (
     <div id='about' className='w-full px-[12%] py-10 scroll-mt-20 pt-50 bg-white transition-colors duration-300'>
         <FadeInUp>
-          <h2 className='text-center text-5xl font-Ovo text-gray-900'> About Me</h2>
+          <h2 className='text-center text-5xl font-Ovo text-gray-900'>About Me</h2>
         </FadeInUp>
 
         <StaggerContainer>

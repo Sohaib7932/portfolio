@@ -23,23 +23,23 @@ const RecentProjects = () => {
 
       <StaggerContainer className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto' >
         {projectList.map((project, index) => (
-          <StaggerItem key={index}>
+          <StaggerItem key={index} className='h-full'>
             <a 
               href={project.link}
               target='_blank'
               rel='noopener noreferrer'
-              className='block border-[0.5px] border-gray-300 rounded-lg overflow-hidden shadow-lg group cursor-pointer hover:shadow-2xl transform transition-all duration-500 hover:scale-105 hover:-translate-y-3 relative bg-white hover:border-blue-400'
+              className='flex flex-col h-full border-[0.5px] border-gray-300 rounded-lg overflow-hidden shadow-lg group cursor-pointer hover:shadow-2xl transform transition-all duration-500 hover:scale-105 hover:-translate-y-3 relative bg-white hover:border-blue-400'
             >
             {project.image ? (
               <Image
                 src={project.image}
                 alt={project.title}
-                className='w-full h-40 object-cover group-hover:scale-110 transition-transform duration-300 ease-in-out'
+                className='w-full h-40 object-cover group-hover:scale-110 transition-transform duration-300 ease-in-out flex-shrink-0'
                 width={300}
                 height={160}
               />
             ) : (
-              <div className='w-full h-40 bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 ease-in-out'>
+              <div className='w-full h-40 bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 ease-in-out flex-shrink-0'>
                 <div className='text-center'>
                   <div className='w-12 h-12 bg-blue-200 rounded-full flex items-center justify-center mx-auto mb-2'>
                     <svg className='w-6 h-6 text-blue-600' fill='currentColor' viewBox='0 0 20 20'>
@@ -50,15 +50,15 @@ const RecentProjects = () => {
                 </div>
               </div>
             )}
-            <div className='p-4' >
+            <div className='p-4 flex flex-col flex-grow' >
               <h3 className='text-lg font-semibold text-gray-800 mb-2 text-center' >
                 {project.title}
               </h3>
-              <p className='text-gray-600 text-sm text-center leading-relaxed' >
+              <p className='text-gray-600 text-sm text-center leading-relaxed flex-grow mb-3' >
                 {project.description}
               </p>
               {project.category && (
-                <div className='mt-3 text-center'>
+                <div className='text-center mt-auto'>
                   <span className='inline-block px-2 py-1 text-xs bg-blue-100 text-blue-600 rounded-full'>
                     {project.category}
                   </span>
