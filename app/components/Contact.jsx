@@ -1,8 +1,9 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { assets } from '@/assets/assets'
 import { FadeInUp, FadeInLeft, FadeInRight, StaggerContainer, StaggerItem } from './animations/MotionComponents'
 import emailjs from '@emailjs/browser'
+import OTPVerification from './OTPVerification'
 
 const Contact = () => {
   const form = useRef()
@@ -15,6 +16,11 @@ const Contact = () => {
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState('')
+  
+  // Email verification states
+  const [showOTPVerification, setShowOTPVerification] = useState(false)
+  const [isEmailVerified, setIsEmailVerified] = useState(false)
+  const [verifiedEmail, setVerifiedEmail] = useState('')
 
   const validateForm = () => {
     const newErrors = {}
@@ -51,15 +57,64 @@ const Contact = () => {
     }
   }
 
-  const sendEmail = (e) => {
-    e.preventDefault()
+  // Check if email is verified on component mount
+  useEffect(() => {
+    const verifiedEmail = localStorage.getItem('emailVerified')
+    const verificationTimestamp = localStorage.getItem('verificationTimestamp')
     
-    if (!validateForm()) {
-      return
+    if (verifiedEmail && verificationTimestamp) {
+      const timeDiff = Date.now() - parseInt(verificationTimestamp)
+      const oneHour = 60 * 60 * 1000 // 1 hour in milliseconds
+      
+      // Verification is valid for 1 hour
+      if (timeDiff < oneHour) {
+        setIsEmailVerified(true)
+        setVerifiedEmail(verifiedEmail)
+        // Auto-fill email if it matches verified email
+        if (formData.user_email === '' || formData.user_email === verifiedEmail) {
+          setFormData(prev => ({ ...prev, user_email: verifiedEmail }))
+        }
+      } else {
+        // Verification expired, clear it
+        localStorage.removeItem('emailVerified')
+        localStorage.removeItem('verificationTimestamp')
+      }
     }
+  }, [])
+
+  // Check if email needs verification
+  const needsEmailVerification = (email) => {
+    return !isEmailVerified || verifiedEmail !== email
+  }
+
+  // Handle verification success
+  const handleVerificationSuccess = (user) => {
+    setIsEmailVerified(true)
+    setVerifiedEmail(user.email)
+    setShowOTPVerification(false)
     
+    // Store verification in localStorage
+    localStorage.setItem('emailVerified', user.email)
+    localStorage.setItem('verificationTimestamp', Date.now().toString())
+    
+    // Update form email if needed
+    setFormData(prev => ({ ...prev, user_email: user.email }))
+    
+    // Now proceed with sending the email
+    setTimeout(() => {
+      proceedWithEmailSending()
+    }, 1000)
+  }
+
+  // Handle verification cancellation
+  const handleVerificationCancel = () => {
+    setShowOTPVerification(false)
+    setIsSubmitting(false)
+  }
+
+  // Proceed with sending email after verification
+  const proceedWithEmailSending = () => {
     setIsSubmitting(true)
-    setSubmitStatus('')
     
     // Get EmailJS configuration from environment variables
     const serviceID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
@@ -87,6 +142,11 @@ const Contact = () => {
           subject: '',
           message: ''
         })
+        // Reset verification status to require verification for next email
+        setIsEmailVerified(false)
+        setVerifiedEmail('')
+        localStorage.removeItem('emailVerified')
+        localStorage.removeItem('verificationTimestamp')
       })
       .catch((error) => {
         console.error('Failed to send email:', error.text)
@@ -97,6 +157,22 @@ const Contact = () => {
         // Clear status message after 5 seconds
         setTimeout(() => setSubmitStatus(''), 5000)
       })
+  }
+
+  const sendEmail = (e) => {
+    e.preventDefault()
+    
+    if (!validateForm()) {
+      return
+    }
+    
+    // Check if email verification is needed
+    if (needsEmailVerification(formData.user_email)) {
+      setShowOTPVerification(true)
+    } else {
+      // Email is already verified, proceed directly
+      proceedWithEmailSending()
+    }
   }
   
   return (
@@ -282,6 +358,14 @@ const Contact = () => {
           </form>
         </FadeInRight>
       </div>
+      
+      {/* OTP Verification Modal */}
+      <OTPVerification
+        email={formData.user_email}
+        onVerificationSuccess={handleVerificationSuccess}
+        onCancel={handleVerificationCancel}
+        isVisible={showOTPVerification}
+      />
     </div>
   )
 }
