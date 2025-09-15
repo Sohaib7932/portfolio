@@ -1,9 +1,103 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
 import Image from 'next/image'
 import { assets } from '@/assets/assets'
 import { FadeInUp, FadeInLeft, FadeInRight, StaggerContainer, StaggerItem } from './animations/MotionComponents'
+import emailjs from '@emailjs/browser'
 
 const Contact = () => {
+  const form = useRef()
+  const [formData, setFormData] = useState({
+    user_name: '',
+    user_email: '',
+    subject: '',
+    message: ''
+  })
+  const [errors, setErrors] = useState({})
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState('')
+
+  const validateForm = () => {
+    const newErrors = {}
+    
+    if (!formData.user_name.trim()) {
+      newErrors.user_name = 'Name is required'
+    }
+    
+    if (!formData.user_email.trim()) {
+      newErrors.user_email = 'Email is required'
+    } else if (!/\S+@\S+\.\S+/.test(formData.user_email)) {
+      newErrors.user_email = 'Please enter a valid email address'
+    }
+    
+    if (!formData.subject.trim()) {
+      newErrors.subject = 'Subject is required'
+    }
+    
+    if (!formData.message.trim()) {
+      newErrors.message = 'Message is required'
+    }
+    
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setFormData(prev => ({...prev, [name]: value}))
+    
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({...prev, [name]: ''}))
+    }
+  }
+
+  const sendEmail = (e) => {
+    e.preventDefault()
+    
+    if (!validateForm()) {
+      return
+    }
+    
+    setIsSubmitting(true)
+    setSubmitStatus('')
+    
+    // Get EmailJS configuration from environment variables
+    const serviceID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
+    const templateID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+    
+    // Check if EmailJS is properly configured
+    if (!serviceID || !templateID || !publicKey || 
+        serviceID === 'YOUR_SERVICE_ID' || 
+        templateID === 'YOUR_TEMPLATE_ID' || 
+        publicKey === 'YOUR_PUBLIC_KEY') {
+      console.error('EmailJS configuration missing or using placeholder values. Please set up EmailJS first.')
+      setSubmitStatus('config_error')
+      setIsSubmitting(false)
+      return
+    }
+    
+    emailjs.sendForm(serviceID, templateID, form.current, publicKey)
+      .then((result) => {
+        console.log('Email sent successfully:', result.text)
+        setSubmitStatus('success')
+        setFormData({
+          user_name: '',
+          user_email: '',
+          subject: '',
+          message: ''
+        })
+      })
+      .catch((error) => {
+        console.error('Failed to send email:', error.text)
+        setSubmitStatus('error')
+      })
+      .finally(() => {
+        setIsSubmitting(false)
+        // Clear status message after 5 seconds
+        setTimeout(() => setSubmitStatus(''), 5000)
+      })
+  }
   
   return (
     <div id='contact' className='w-full px-[12%] py-20 scroll-mt-20 bg-gradient-to-b from-white to-gray-50'>
@@ -78,49 +172,112 @@ const Contact = () => {
 
         {/* Contact Form */}
         <FadeInRight className='flex-1'>
-          <form className='space-y-6'>
+          {/* Success/Error Message */}
+          {submitStatus && (
+            <div className={`mb-6 p-4 rounded-lg text-center ${
+              submitStatus === 'success' 
+                ? 'bg-green-100 text-green-800 border border-green-300' 
+                : 'bg-red-100 text-red-800 border border-red-300'
+            }`}>
+              {submitStatus === 'success' 
+                ? '🎉 Message sent successfully! I\'ll get back to you soon.' 
+                : submitStatus === 'config_error'
+                ? '⚙️ EmailJS not configured yet. Please contact me directly at muhammadsohaib7932@gmail.com'
+                : '❌ Failed to send message. Please try again or email me directly.'
+              }
+            </div>
+          )}
+
+          <form ref={form} onSubmit={sendEmail} className='space-y-6'>
             <div className='grid grid-cols-1 sm:grid-cols-2 gap-6'>
               <div>
-                <label className='block text-gray-700 font-medium mb-2'>Name</label>
+                <label className='block text-gray-700 font-medium mb-2'>Name *</label>
                 <input 
                   type='text'
-                  className='w-full px-4 py-3 border border-gray-300 bg-white text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 outline-none'
+                  name='user_name'
+                  value={formData.user_name}
+                  onChange={handleInputChange}
+                  className={`w-full px-4 py-3 border bg-white text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 outline-none ${
+                    errors.user_name ? 'border-red-500' : 'border-gray-300'
+                  }`}
                   placeholder='Your Name'
                 />
+                {errors.user_name && (
+                  <p className='text-red-500 text-sm mt-1'>{errors.user_name}</p>
+                )}
               </div>
               <div>
-                <label className='block text-gray-700 font-medium mb-2'>Email</label>
+                <label className='block text-gray-700 font-medium mb-2'>Email *</label>
                 <input 
                   type='email'
-                  className='w-full px-4 py-3 border border-gray-300 bg-white text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 outline-none'
+                  name='user_email'
+                  value={formData.user_email}
+                  onChange={handleInputChange}
+                  className={`w-full px-4 py-3 border bg-white text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 outline-none ${
+                    errors.user_email ? 'border-red-500' : 'border-gray-300'
+                  }`}
                   placeholder='your.email@gmail.com'
                 />
+                {errors.user_email && (
+                  <p className='text-red-500 text-sm mt-1'>{errors.user_email}</p>
+                )}
               </div>
             </div>
 
             <div>
-              <label className='block text-gray-700 font-medium mb-2'>Subject</label>
+              <label className='block text-gray-700 font-medium mb-2'>Subject *</label>
               <input 
                 type='text'
-                className='w-full px-4 py-3 border border-gray-300 bg-white text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 outline-none'
+                name='subject'
+                value={formData.subject}
+                onChange={handleInputChange}
+                className={`w-full px-4 py-3 border bg-white text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 outline-none ${
+                  errors.subject ? 'border-red-500' : 'border-gray-300'
+                }`}
                 placeholder='Project Inquiry'
               />
+              {errors.subject && (
+                <p className='text-red-500 text-sm mt-1'>{errors.subject}</p>
+              )}
             </div>
 
             <div>
-              <label className='block text-gray-700 font-medium mb-2'>Message</label>
+              <label className='block text-gray-700 font-medium mb-2'>Message *</label>
               <textarea 
                 rows='6'
-                className='w-full px-4 py-3 border border-gray-300 bg-white text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 outline-none resize-none'
+                name='message'
+                value={formData.message}
+                onChange={handleInputChange}
+                className={`w-full px-4 py-3 border bg-white text-gray-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 outline-none resize-none ${
+                  errors.message ? 'border-red-500' : 'border-gray-300'
+                }`}
                 placeholder='Tell me about your project...'
               ></textarea>
+              {errors.message && (
+                <p className='text-red-500 text-sm mt-1'>{errors.message}</p>
+              )}
             </div>
 
             <button 
               type='submit'
-              className='w-full bg-black text-white py-3 px-8 rounded-full hover:bg-gray-800 hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out font-medium'
+              disabled={isSubmitting}
+              className={`w-full py-3 px-8 rounded-full font-medium transition-all duration-300 ease-in-out ${
+                isSubmitting
+                  ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
+                  : 'bg-black text-white hover:bg-gray-800 hover:scale-105 hover:shadow-lg'
+              }`}
             >
-              Send Message
+              {isSubmitting ? (
+                <div className='flex items-center justify-center'>
+                  <svg className='animate-spin -ml-1 mr-3 h-5 w-5 text-white' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24'>
+                    <circle className='opacity-25' cx='12' cy='12' r='10' stroke='currentColor' strokeWidth='4'></circle>
+                    <path className='opacity-75' fill='currentColor' d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'></path>
+                  </svg>
+                  Sending...
+                </div>
+              ) : (
+                'Send Message'
+              )}
             </button>
           </form>
         </FadeInRight>
