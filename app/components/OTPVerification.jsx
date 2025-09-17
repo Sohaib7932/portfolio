@@ -30,6 +30,11 @@ const OTPVerification = ({
       setError('')
       setVerificationStep('sending')
 
+      // Check if Firebase auth is available
+      if (!auth) {
+        throw new Error('Firebase authentication is not available. Please check your configuration.')
+      }
+
       console.log('🔥 Sending verification email to:', email)
       console.log('🔧 Action code settings:', actionCodeSettings)
       console.log('🔧 Auth domain:', auth.config?.authDomain)
@@ -75,7 +80,7 @@ const OTPVerification = ({
 
   // Check if user came back from email link
   useEffect(() => {
-    if (typeof window !== 'undefined' && isSignInWithEmailLink(auth, window.location.href)) {
+    if (typeof window !== 'undefined' && auth && isSignInWithEmailLink(auth, window.location.href)) {
       verifyEmailLink()
     }
   }, [])
