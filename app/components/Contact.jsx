@@ -1,7 +1,8 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { assets } from '@/assets/assets'
 import { FadeInUp, FadeInLeft, FadeInRight, StaggerContainer, StaggerItem } from './animations/MotionComponents'
+import { InlineWidget } from 'react-calendly'
 import emailjs from '@emailjs/browser'
 
 const Contact = () => {
@@ -280,6 +281,27 @@ const Contact = () => {
             </button>
           </form>
         </FadeInRight>
+      </div>
+
+      {/* Calendly Scheduling Section */}
+      <div className='mt-20 max-w-6xl mx-auto'>
+        <FadeInUp>
+          <h3 className='text-center text-3xl font-Ovo mb-4 text-gray-900'>Schedule a Call</h3>
+          <p className='text-center max-w-2xl mx-auto font-Ovo text-gray-600 mb-12'>
+            Prefer to talk directly? Schedule a consultation call at your convenience. 
+            Let's discuss your project requirements in detail.
+          </p>
+        </FadeInUp>
+        
+        <FadeInUp className='bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100'>
+          <InlineWidget 
+            url="https://calendly.com/muhammadsohaib7932" 
+            styles={{
+              height: '700px',
+              borderRadius: '16px'
+            }}
+          />
+        </FadeInUp>
       </div>
     </div>
   )
