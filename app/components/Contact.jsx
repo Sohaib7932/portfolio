@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { assets } from '@/assets/assets'
 import { FadeInUp, FadeInLeft, FadeInRight, StaggerContainer, StaggerItem } from './animations/MotionComponents'
-import { InlineWidget } from 'react-calendly'
+import CalendlyWidget from './CalendlyWidget'
 import emailjs from '@emailjs/browser'
 
 const Contact = () => {
@@ -16,6 +16,7 @@ const Contact = () => {
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState('')
+  const [showCalendly, setShowCalendly] = useState(false)
 
   const validateForm = () => {
     const newErrors = {}
@@ -283,26 +284,73 @@ const Contact = () => {
         </FadeInRight>
       </div>
 
-      {/* Calendly Scheduling Section */}
-      <div className='mt-20 max-w-6xl mx-auto'>
+      {/* Ready to Build Something Amazing CTA Section */}
+      <div className='mt-20 bg-slate-900 -mx-[12%] px-[12%] py-20 shadow-2xl rounded-3xl mx-4'>
         <FadeInUp>
-          <h3 className='text-center text-3xl font-Ovo mb-4 text-gray-900'>Schedule a Call</h3>
-          <p className='text-center max-w-2xl mx-auto font-Ovo text-gray-600 mb-12'>
-            Prefer to talk directly? Schedule a consultation call at your convenience. 
-            Let's discuss your project requirements in detail.
+          <h2 className='text-center text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 font-Ovo leading-tight'>
+            Ready to Build Something Amazing?
+          </h2>
+          
+          <p className='text-center text-gray-300 text-lg md:text-xl mb-12 max-w-4xl mx-auto leading-relaxed'>
+            Let's discuss your project and discover how we can help transform your vision into reality.
           </p>
-        </FadeInUp>
-        
-        <FadeInUp className='bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100'>
-          <InlineWidget 
-            url="https://calendly.com/muhammadsohaib7932" 
-            styles={{
-              height: '700px',
-              borderRadius: '16px'
-            }}
-          />
+          
+          <div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>
+            <button 
+              onClick={() => {
+                const contactForm = document.querySelector('#contact form')
+                if (contactForm) {
+                  contactForm.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'center'
+                  })
+                }
+              }}
+              className='bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg inline-flex items-center gap-2'
+            >
+              Start Your Project
+              <svg 
+                className='w-5 h-5' 
+                fill='none' 
+                stroke='currentColor' 
+                viewBox='0 0 24 24'
+              >
+                <path 
+                  strokeLinecap='round' 
+                  strokeLinejoin='round' 
+                  strokeWidth={2} 
+                  d='M17 8l4 4m0 0l-4 4m4-4H3' 
+                />
+              </svg>
+            </button>
+            
+            <button 
+              onClick={() => setShowCalendly(true)}
+              className='border border-gray-400 hover:border-white text-gray-300 hover:text-white font-semibold px-8 py-4 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 inline-flex items-center gap-2'
+            >
+              Schedule a Call
+              <svg 
+                className='w-5 h-5' 
+                fill='none' 
+                stroke='currentColor' 
+                viewBox='0 0 24 24'
+              >
+                <path 
+                  strokeLinecap='round' 
+                  strokeLinejoin='round' 
+                  strokeWidth={2} 
+                  d='M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z' 
+                />
+              </svg>
+            </button>
+          </div>
         </FadeInUp>
       </div>
+
+      {/* Calendly Modal */}
+      {showCalendly && (
+        <CalendlyWidget onClose={() => setShowCalendly(false)} />
+      )}
     </div>
   )
 }
