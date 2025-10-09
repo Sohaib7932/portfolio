@@ -22,7 +22,7 @@ const About = () => {
                   <p className='mb-10 max-w-2xl font-Ovo text-gray-700'> 
                   Hello! I'm a Software Engineering student at Air University with a strong 
                   passion for web design and development. Over the past three years, 
-                  I've gained extensive experience in building modern, responsive websites 
+                  I have gained extensive experience in building modern, responsive websites 
                   that blend clean design with seamless functionality. Whether I'm coding a site
                    from scratch or transforming a UI concept into reality, I take pride in 
                    delivering work that reflects high standards of quality and creativity.

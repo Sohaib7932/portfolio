@@ -6,7 +6,7 @@ const CalendlyWidget = ({ onClose }) => {
   return (
     <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4'>
       <div className='bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden relative'>
-        {/* Close Button */}
+        {/* Close Button */} 
         <button
           onClick={onClose}
           className='absolute top-4 right-4 z-10 w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors duration-200'

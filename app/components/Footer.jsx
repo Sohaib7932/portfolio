@@ -60,15 +60,6 @@ const Footer = () => {
           {/* Brand Section */}
           <div className='lg:col-span-2'>
             <div className='flex items-center mb-4'>
-              {assets.logo && (
-                <Image 
-                  src={assets.logo} 
-                  alt='Logo' 
-                  width={40} 
-                  height={40} 
-                  className='mr-3'
-                />
-              )}
               <h3 className='text-2xl font-bold font-Ovo'>Sohaib Portfolio</h3>
             </div>
             <p className='text-gray-400 mb-6 max-w-md leading-relaxed'>
